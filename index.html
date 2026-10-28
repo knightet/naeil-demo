@@ -126,6 +126,34 @@ blockquote{margin:0;border-left:3px solid var(--line);padding:2px 0 2px 10px;fon
 .lbl{font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;align-self:flex-start}
 .lbl.n{background:var(--line);color:var(--ink)} .lbl.a{background:var(--accent);color:#fff}
 .flow{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.mis{display:flex;flex-direction:column;gap:8px}
+.mi{display:grid;grid-template-columns:32px 1fr auto;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;text-decoration:none}
+.mi .n{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:900;background:var(--accent-soft);color:var(--accent)}
+.mi b{font-size:15px;display:block}.mi span.s{font-size:12px;color:var(--muted)}
+.mi .st{font-size:12px;font-weight:700;color:var(--accent)}
+.mi.ok{border-color:var(--ok)}.mi.ok .n{background:var(--ok);color:#fff}.mi.ok .st{color:var(--ok)}
+.prog{height:6px;border-radius:3px;background:var(--line);overflow:hidden}.prog i{display:block;height:100%;background:var(--ok);transition:width .3s}
+.hint{font-size:12px;font-weight:700;color:var(--accent);display:flex;gap:6px;align-items:center}
+.hint::before{content:"👆"}
+@media (prefers-reduced-motion: no-preference){.pulse{animation:pulse 1.4s ease-in-out infinite}@keyframes pulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 45%,transparent)}50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 0%,transparent)}}}
+.toast{position:absolute;left:16px;right:16px;bottom:84px;background:var(--ok);color:#fff;border-radius:12px;padding:12px 14px;font-weight:700;font-size:14px;z-index:5;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+details.more summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--accent);list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+.ptbl{border-top:2px solid var(--ink);display:grid;grid-template-columns:86px 1fr;font-size:13.5px}
+.ptbl dt,.ptbl dd{margin:0;padding:9px 10px;border-bottom:1px solid var(--line)}
+.ptbl dt{background:var(--bg);color:var(--muted);font-weight:500}
+.ptbl dd{background:var(--surface)}
+.ptag{display:inline-block;font-size:12px;padding:2px 7px;border-radius:4px;border:1px solid var(--line);background:var(--bg)}
+.ptag.t{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;text-decoration:none}
+.pcard .more-btn{align-self:flex-end;font-size:13px;border:1px solid var(--accent);color:var(--accent);border-radius:6px;padding:5px 12px;background:var(--accent-soft)}
+.plus{background:var(--accent-soft);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;border-left:4px solid var(--accent)}
+.plus .h{font-size:12px;font-weight:900;color:var(--accent)}
+.pva{display:grid;grid-template-columns:64px 1fr 1fr;font-size:13px;gap:0}
+.pva>*{padding:8px 6px;border-bottom:1px solid var(--line)}
+.pva .hd{font-size:11px;font-weight:700;color:var(--muted)}
+.pva .r{font-weight:700;color:var(--accent)}
+.srcbar{font-size:11px;color:var(--muted);background:var(--bg);border:1px dashed var(--line);border-radius:8px;padding:6px 10px}
 .empty{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 @media (prefers-reduced-motion: no-preference){.view{animation:in .22s ease}@keyframes in{from{opacity:.5;transform:translateX(8px)}to{opacity:1;transform:none}}}
 </style>
@@ -147,38 +175,34 @@ blockquote{margin:0;border-left:3px solid var(--line);padding:2px 0 2px 10px;fon
     <!-- 홈 -->
     <main id="v-home" class="view">
       <section class="hero">
-        <p style="font-size:12px;font-weight:700;color:var(--accent)">미래내일 일경험 · 제안 앱</p>
         <h1><b>내 일</b>의 경험이,<br>누군가의 <b>내일</b>이 되는 곳</h1>
-        <p style="font-size:16px;font-weight:700;color:var(--bg)">한 줄로: 수료자가 남긴 “실제로 한 일” 기록을, 별점 없이 다음 청년의 공고 옆에 붙입니다.</p>
-        <p>신청 전에는 실제 업무를, 수료 후에는 업무가 적힌 확인서를 얻습니다.</p>
+        <p>먼저 다녀온 사람의 “실제로 한 일”을 공고 옆에.</p>
       </section>
-      <div class="quick">
-        <a href="#changes" class="wide" style="background:var(--ink);color:var(--bg)"><b>무엇이 바뀌나 5가지</b><span style="color:inherit;opacity:.75">지금 포털(출처 인용) → 바뀐 뒤를 한 장에</span></a>
-        <a href="#p1" class="wide"><b>지금 vs 바뀐 뒤 · 공고 상세</b><span>같은 공고가 어떻게 달라지는지 토글로 비교</span></a>
-        <a href="#list"><b>공고 옆 기록</b><span>가상 기업 5곳 · 먼저 다녀온 사람이 해 본 일</span></a>
-        <a href="#done"><b>내 참여확인서</b><span>수료증에 없던 ‘한 일’이 적힌 확인서</span></a>
-        <a href="#write"><b>2분 기록 쓰기</b><span>수료할 때 남기는 사실 기록</span></a>
-        <a href="#check"><b>1분 자격 확인</b><span>보조 기능 · 신청 대상인지 먼저</span></a>
+      <div class="row" style="justify-content:space-between;align-items:baseline"><p style="font-weight:900;font-size:17px">기능 4가지 직접 해 보기</p><span id="misCount" class="small muted">0 / 4</span></div>
+      <div class="prog"><i id="misBar" style="width:0%"></i></div>
+      <div class="mis">
+        <a class="mi" href="#p1" data-m="0"><span class="n">1</span><span><b>지금 vs 바뀐 뒤</b><span class="s">‘지금 화면 ↔ 바뀐 뒤’ 누르기</span></span><span class="st">해 보기</span></a>
+        <a class="mi" href="#list" data-m="1"><span class="n">2</span><span><b>해 보고 싶은 일로 고르기</b><span class="s">‘데이터 분석’ 같은 칩 누르기</span></span><span class="st">해 보기</span></a>
+        <a class="mi" href="#write" data-m="2"><span class="n">3</span><span><b>2분 기록 남기기</b><span class="s">체크하고 제출 → 확인서 받기</span></span><span class="st">해 보기</span></a>
+        <a class="mi" href="#done" data-m="3"><span class="n">4</span><span><b>공고 옆 내 기록 보기</b><span class="s">확인서에서 버튼 누르기</span></span><span class="st">해 보기</span></a>
       </div>
-      <p class="foot">별점과 순위는 없습니다. 실제로 한 일, 실제로 쓴 역량, 시간을 쓴 곳, 3개월 뒤 진로만 보여 줍니다. 기업·인물·숫자·기록은 모두 가상 예시입니다.</p>
+      <div class="quick">
+        <a href="#changes"><b>무엇이 바뀌나</b><span>지금(출처) → 바뀐 뒤</span></a>
+        <a href="#check"><b>1분 자격 확인</b><span>보조 기능</span></a>
+      </div>
     </main>
 
     <!-- 자가진단 -->
     <main id="v-check" class="view" hidden>
-      <div class="sumline"><span class="k">한 줄 요약</span><p>신청서를 쓰기 전에, 내가 신청 대상인지 1분 만에 확인합니다.</p><a href="#changes">지금 포털과 비교 →</a></div>
-      <div class="card new">
-        <span class="newtag">새로 생김</span>
-        <h2 style="font-size:19px">1분 자격 자가진단</h2>
-        <p class="small muted">신청 전에 먼저 확인하세요. 최종 자격은 공고마다 다릅니다.</p>
-      </div>
-      <div class="now"><span class="lbl n">지금</span><p class="small">자격 안내가 공고문마다 흩어져 있어, 신청서를 다 쓴 뒤에야 대상이 아님을 아는 경우가 생깁니다.</p>
+      <div class="sumline"><span class="k">한 줄 요약</span><p>신청서를 쓰기 전에, 내가 신청 대상인지 1분 만에 확인합니다.</p></div>
+      <div class="now"><span class="lbl n">지금</span>
         <blockquote>“만 15세 이상 34세 이하 미취업 청년”</blockquote><p class="cite">고용노동부 설명을 인용한 언론 보도(2026-07) · 원문 확인 필요</p></div>
-      <label class="opt"><input type="checkbox" id="c1"><span>만 15~34세다 (군 복무 연장 등 예외는 공고별 상이)</span></label>
-      <label class="opt"><input type="checkbox" id="c2"><span>지금 미취업 상태다 (주 30시간 미만 근로 인정 여부는 공고별 상이)</span></label>
-      <label class="opt"><input type="checkbox" id="c3"><span>올해 이미 2번 참여하지 않았다 (참여 횟수 제한은 공고 확인)</span></label>
+      <label class="opt"><input type="checkbox" id="c1"><span>만 15~34세다</span></label>
+      <label class="opt"><input type="checkbox" id="c2"><span>지금 미취업 상태다</span></label>
+      <label class="opt"><input type="checkbox" id="c3"><span>올해 2번 넘게 참여하지 않았다</span></label>
       <button class="btn" id="checkBtn" type="button">결과 보기</button>
       <p id="checkOut" class="card small" role="status" hidden></p>
-      <a class="btn ghost" href="#list">공고 보러 가기</a>
+      <p class="foot">세부 조건은 공고마다 다릅니다.</p>
     </main>
 
     <!-- 무엇이 바뀌나 -->
@@ -186,84 +210,83 @@ blockquote{margin:0;border-left:3px solid var(--line);padding:2px 0 2px 10px;fon
       <div class="sumline"><span class="k">한 줄 요약</span><p>신청·수료 절차는 그대로 두고, 공고 옆에 먼저 다녀온 사람의 기록만 더합니다.</p></div>
       <div class="card">
         <p class="step">1 · 공고 찾기</p>
-        <div class="now"><span class="lbl n">지금</span><blockquote>회원가입 후 운영기관 검색 → “프로그램 보기”에서 희망 프로그램 확인 후 신청</blockquote><p class="cite">운영기관 공고 예시: 화성상공회의소 「미래내일 일경험 2기 모집 공고문」(2025) · 기관마다 다를 수 있음</p></div>
-        <div class="now" style="background:var(--accent-soft);border:0"><span class="lbl a">바뀐 뒤</span><p style="font-weight:700;font-size:14px">공고 카드에 수료자가 남긴 ‘실제 업무 3줄’과 ‘자주 해 본 일’이 붙습니다.</p></div>
-        <a class="btn ghost" href="#list" style="padding:11px">공고 옆 기록 화면 보기</a>
+        <div class="now"><span class="lbl n">지금</span><blockquote>목록 카드: 유형 · 마감 · 모집기간 · 인원 · 직무 · 지역<br>상세: 주요내용 · 평가계획 · 코칭계획 (모두 ‘계획’)</blockquote><p class="cite">청년일경험포털 목록·상세 화면(2026-10 화면 기준)</p></div>
+        <div class="now" style="background:var(--accent-soft);border:0"><span class="lbl a">바뀐 뒤</span><p style="font-weight:700;font-size:14px">같은 카드·상세에 ‘실제로 어땠는지’(계획 vs 실제, 해 본 일)가 붙습니다.</p></div>
+        <a class="btn ghost" href="#list" style="padding:11px">해 보기 →</a>
       </div>
       <div class="card">
         <p class="step">2 · 기업 고르기</p>
         <div class="now"><span class="lbl n">지금</span><blockquote>“지원동기에 희망하는 기업 1~3순위를 반드시 기재”</blockquote><p class="cite">운영기관 공고 예시: 화성상공회의소 「미래내일 일경험 2기 모집 공고문」(2025) · 기관마다 다를 수 있음</p></div>
         <div class="now" style="background:var(--accent-soft);border:0"><span class="lbl a">바뀐 뒤</span><p style="font-weight:700;font-size:14px">순위를 쓰기 전에 기업별 실제 업무 비중·쓴 역량·먼저 한 사람의 기록을 비교합니다.</p></div>
-        <a class="btn ghost" href="#p1" style="padding:11px">공고 상세 화면 보기</a>
+        <a class="btn ghost" href="#p1" style="padding:11px">해 보기 →</a>
       </div>
       <div class="card">
         <p class="step">3 · 자격 확인</p>
         <div class="now"><span class="lbl n">지금</span><blockquote>“만 15세 이상 34세 이하 미취업 청년” · 세부 조건은 공고문마다</blockquote><p class="cite">고용노동부 설명을 인용한 언론 보도(2026-07) · 원문 확인 필요</p></div>
         <div class="now" style="background:var(--accent-soft);border:0"><span class="lbl a">바뀐 뒤</span><p style="font-weight:700;font-size:14px">신청 전 1분 자가진단으로 탈락 조건을 먼저 확인합니다.</p></div>
-        <a class="btn ghost" href="#check" style="padding:11px">자격 확인 화면 보기</a>
+        <a class="btn ghost" href="#check" style="padding:11px">해 보기 →</a>
       </div>
       <div class="card">
         <p class="step">4 · 수료</p>
         <div class="now"><span class="lbl n">지금</span><blockquote>“수료하고 만족도 조사를 마친 참여청년은 … 수료증을 신청” · 성과지표를 만족도로 둔다는 보도</blockquote><p class="cite">청년일경험포털 공지(검색 결과 발췌) · 원문 확인 필요 · 쿠키뉴스(2026-06-30)</p></div>
         <div class="now" style="background:var(--accent-soft);border:0"><span class="lbl a">바뀐 뒤</span><p style="font-weight:700;font-size:14px">만족도 설문 옆에 2분 사실 기록(한 일·쓴 역량·시간 비중)을 더합니다. 별점은 없습니다.</p></div>
-        <a class="btn ghost" href="#write" style="padding:11px">2분 기록 화면 보기</a>
+        <a class="btn ghost" href="#write" style="padding:11px">해 보기 →</a>
       </div>
       <div class="card">
         <p class="step">5 · 경력 증명</p>
         <div class="now"><span class="lbl n">지금</span><blockquote>통합경력증명(2026-07-29)에 일경험 참여 이력 포함 · 업무 내용 포함 여부는 확인 필요</blockquote><p class="cite">고용노동부 통합경력증명 보도(2026-07)</p></div>
         <div class="now" style="background:var(--accent-soft);border:0"><span class="lbl a">바뀐 뒤</span><p style="font-weight:700;font-size:14px">참여확인서에 수행 업무와 쓴 역량을 적고, 2단계로 통합경력증명 연결을 건의합니다.</p></div>
-        <a class="btn ghost" href="#done" style="padding:11px">참여확인서 화면 보기</a>
+        <a class="btn ghost" href="#done" style="padding:11px">해 보기 →</a>
       </div>
-      <p class="foot">따옴표 안은 원문 인용, 그 밖은 요약입니다. ‘지금’ 칸은 2026-10-28 기준 공개 공고문·보도의 문장을 인용했습니다. 포털 화면 원본 캡처가 아니며, 운영기관·연도에 따라 다를 수 있습니다.</p>
+      <p class="foot">따옴표 = 원문 인용 · 2026-10-28 기준 · 기관마다 다를 수 있음</p>
     </main>
 
     <!-- 공고 목록 -->
     <main id="v-list" class="view" hidden>
-      <div class="sumline"><span class="k">한 줄 요약</span><p>공고마다, 먼저 다녀온 사람들이 실제로 무슨 일을 했는지 함께 보여 줍니다.</p><a href="#changes">지금 포털과 비교 →</a></div>
+      <div class="sumline"><span class="k">한 줄 요약</span><p>공고마다, 먼저 다녀온 사람들이 실제로 무슨 일을 했는지 함께 보여 줍니다.</p></div>
       
-      <p class="step">유형</p>
+      <div class="seg" role="group" aria-label="비교" id="segBoxL">
+        <button type="button" data-mode="0" aria-pressed="false">지금 화면</button>
+        <button type="button" data-mode="1" aria-pressed="true">바뀐 뒤</button>
+      </div>
+      <div class="row" style="align-items:baseline;gap:8px"><p style="font-weight:900;font-size:19px">일경험 프로그램</p><p class="small">모집 중 <b style="color:var(--accent);font-size:18px" id="listCount"></b>건 <span class="muted">(가상)</span></p></div>
       <div class="row" role="group" aria-label="유형" id="typeChips"></div>
-      <p class="step">이런 일을 해 보고 싶어요 <span style="font-weight:500">(수료자 다수가 해 봤다고 답한 과정)</span></p>
-      <div class="row" role="group" aria-label="역량" id="abilChips"></div>
-      <p id="listCount" class="small muted"></p>
+      <div class="row" style="flex-wrap:nowrap"><select disabled aria-label="직무"><option>직무 전체</option></select><select disabled aria-label="지역"><option>지역 전체</option></select></div>
+      <div id="abilWrap" class="view" style="gap:8px;animation:none">
+        <p class="step"><span class="newtag">새로 생김</span> 이런 일을 해 보고 싶어요</p>
+        <p class="hint" id="hintAbil">하나 눌러 보세요</p>
+        <div class="row" role="group" aria-label="해 본 일" id="abilChips"></div>
+      </div>
+      <p class="srcbar" id="srcList">지금 화면 = 청년일경험포털 목록 구조 재현(2026-10 화면 기준) · 기업·내용은 가상</p>
       <div id="listCards" class="view" style="animation:none"></div>
-      <p class="foot">순서는 마감일 순입니다. 별점·인기 순위로 줄 세우지 않습니다.</p>
+      <p class="foot">마감일 순 · 별점·순위 없음</p>
     </main>
 
     <!-- 공고 상세 -->
     <main id="v-detail" class="view" hidden>
-      <div class="sumline"><span class="k">한 줄 요약</span><p>지원하기 전에, ‘가서 뭘 하지?’의 답을 먼저 다녀온 사람의 기록으로 봅니다.</p><a href="#changes">지금 포털과 비교 →</a></div>
-      <div class="seg" role="group" aria-label="비교">
+      <div class="sumline"><span class="k">한 줄 요약</span><p>지원하기 전에, ‘가서 뭘 하지?’의 답을 먼저 다녀온 사람의 기록으로 봅니다.</p></div>
+      <p class="hint" id="hintSeg">눌러서 비교해 보세요</p>
+      <div class="seg" role="group" aria-label="비교" id="segBox">
         <button type="button" id="segBefore" aria-pressed="false">지금 화면</button>
         <button type="button" id="segAfter" aria-pressed="true">바뀐 뒤</button>
       </div>
       <div class="card" id="dHead"></div>
       <div id="beforeNote" class="card" hidden>
-        <span class="lbl n">지금 신청 순서 (공고문 인용)</span>
-        <ol class="flow"><li>포털 회원가입</li><li>운영기관 검색 → 프로그램 보기</li><li>운영계획서 확인</li><li>신청서 작성: 지원동기에 <b>희망 기업 1~3순위</b> 기재</li></ol>
-        <blockquote>“자기소개정보-지원동기에 희망하는 기업 1~3순위를 반드시 기재”</blockquote>
-        <p class="cite">운영기관 공고 예시: 화성상공회의소 「미래내일 일경험 2기 모집 공고문」(2025) · 기관마다 다를 수 있음</p>
-        <p style="font-weight:700;margin-top:6px">그런데 순위를 정할 때 볼 수 있는 건 운영계획서와 공고뿐입니다.</p>
-        <p class="small muted">가서 실제로 무엇을 하는지, 어떤 역량을 쓰는지, 먼저 다녀온 사람은 어땠는지는 신청 전에 알 수 없습니다.</p>
-        <p class="q1">“가서 실제로 뭘 하지?”</p>
-        <p class="q1">“전공도 경험도 없는데 괜찮을까?”</p>
-        <button class="btn" type="button" id="toAfter">바뀐 뒤 화면 보기</button>
+        <p style="font-weight:900">지금은 여기까지</p>
+        <p class="small">평가계획·코칭계획은 있지만, <b>실제로 어땠는지</b>는 볼 수 없습니다.</p>
+        <button class="btn" type="button" id="toAfter">바뀐 뒤 보기</button>
       </div>
       <section id="afterPanel" class="view" style="animation:none"></section>
     </main>
 
     <!-- 기록 쓰기 -->
     <main id="v-write" class="view" hidden>
-      <div class="sumline"><span class="k">한 줄 요약</span><p>‘좋았나요?’ 옆에 ‘무엇을 했나요?’를 2분 더 묻습니다.</p><a href="#changes">지금 포털과 비교 →</a></div>
-      <div class="now"><span class="lbl n">지금 수료 절차</span>
-        <blockquote>“프로그램을 수료하고 만족도 조사를 마친 참여청년은 누리집에서 수료증을 신청”</blockquote><p class="cite">청년일경험포털 공지(검색 결과 발췌) · 원문 확인 필요</p>
-        <p class="small">성과지표를 “참여 청년 만족도”로 두었다는 보도도 있습니다. 만족도만으로는 실제로 무슨 일을 했는지 남지 않습니다.</p><p class="cite">쿠키뉴스(2026-06-30)</p></div>
+      <div class="sumline"><span class="k">한 줄 요약</span><p>‘좋았나요?’ 옆에 ‘무엇을 했나요?’를 2분 더 묻습니다.</p></div>
       <div class="card">
         <p style="font-size:12px;font-weight:700;color:var(--accent)">수료 설문에 붙는 2분 기록</p>
         <label for="prog" style="font-weight:700;font-size:17px">어떤 과정을 마쳤나요?</label>
         <select id="prog"></select>
-        <p class="small muted">별점은 묻지 않습니다. 사실만 남기면 다음 청년의 공고 옆에 붙고, 내 참여확인서에도 함께 적힙니다.</p>
-      </div>
+              </div>
       <form id="form" class="view" style="animation:none" novalidate>
         <div class="card">
           <p class="step">1 / 5 · 뭘 했나</p>
@@ -273,8 +296,7 @@ blockquote{margin:0;border-left:3px solid var(--line);padding:2px 0 2px 10px;fon
         <div class="card">
           <p class="step">2 / 5 · 어떤 역량을 썼나</p>
           <p style="font-weight:700">실제로 써 본 역량을 모두 골라 주세요</p>
-          <p class="small muted">이 응답이 모여 과정별 ‘역량 지도’가 됩니다.</p>
-          <div id="abilBox" class="row"></div>
+                    <div id="abilBox" class="row"></div>
         </div>
         <div class="card">
           <p class="step">3 / 5 · 얼마나</p>
@@ -289,42 +311,41 @@ blockquote{margin:0;border-left:3px solid var(--line);padding:2px 0 2px 10px;fon
           <p class="step">4 / 5 · 다음 사람에게</p>
           <label for="output" style="font-weight:700">결과물 유형 (원본은 공개하지 않아요)</label>
           <select id="output"><option>분석 보고서</option><option>기획안</option><option>콘텐츠</option><option>코드·모델</option><option>운영 매뉴얼</option><option>없음</option></select>
-          <p class="small muted" style="margin-top:6px">아래 네 칸은 선택입니다. 사람·기업 이름, 연락처는 적지 마세요. 운영기관 검수 후 게시됩니다.</p>
-          <label for="worry" class="small">처음 걱정 (선택)</label>
+          <details class="more" style="margin-top:6px"><summary>＋ 다음 사람에게 한마디 (선택)</summary>
+          <div class="view" style="gap:6px;animation:none;margin-top:8px">
+          <label for="worry" class="small">처음 걱정</label>
           <textarea id="worry">비전공자도 따라갈 수 있을까?</textarea>
-          <label for="real" class="small">실제로는 (선택)</label>
+          <label for="real" class="small">실제로는</label>
           <textarea id="real">첫 2주 기초 과정이 있어 가능했어요.</textarea>
-          <label for="fit" class="small">이런 사람에게 맞아요 (선택)</label>
+          <label for="fit" class="small">이런 사람에게 맞아요</label>
           <textarea id="fit">데이터로 근거를 만드는 일을 해 보고 싶은 사람</textarea>
-          <label for="miss" class="small">미리 알았으면 좋았을 점 (선택)</label>
+          <label for="miss" class="small">미리 알았으면 좋았을 점</label>
           <textarea id="miss">파이썬 기초는 미리 해 두면 훨씬 편해요.</textarea>
+          <p class="cite" style="margin:0">이름·연락처 금지 · 검수 후 게시</p></div></details>
         </div>
         <div class="card">
           <p class="step">5 / 5 · 어디로 갔나</p>
-          <p class="small muted">실제 서비스에서는 3개월 뒤 선택형 1문항을 보냅니다(이 체험판은 보내지 않아요). 지금은 계획만 골라 주세요.</p>
+          <p class="small muted">3개월 뒤 1문항을 다시 묻습니다(체험판은 안 보냄).</p>
           <select id="next" aria-label="3개월 뒤 계획"><option>취업 준비</option><option>인턴 지원</option><option>추가 교육</option><option>아직 모름</option></select>
         </div>
-        <button class="btn" type="submit">기록 남기고 참여확인서 받기</button>
-        <p class="foot">중도에 그만둔 경우에는 운영기관이 포기를 처리할 때 이탈 사유 1문항만 묻습니다.</p>
-      </form>
+        <button class="btn pulse" type="submit" id="submitBtn">기록 남기고 확인서 받기</button>
+              </form>
     </main>
 
     <!-- 참여확인서 -->
     <main id="v-done" class="view" hidden>
-      <div class="sumline"><span class="k">한 줄 요약</span><p>수료증에는 없던 ‘내가 한 일’이 적힌 확인서를 받아 자소서·상담에 씁니다.</p><a href="#changes">지금 포털과 비교 →</a></div>
-      <div class="now"><span class="lbl n">지금 있는 것</span>
-        <p class="small">고용24 통합경력증명(2026-07-29 시작)에 미래내일 일경험 참여 이력이 들어갑니다. 다만 <b>어떤 업무를 했는지</b>까지 적히는지는 확인되지 않았습니다.</p><p class="cite">고용노동부 통합경력증명 보도(2026-07)</p></div>
+      <div class="sumline"><span class="k">한 줄 요약</span><p>수료증에는 없던 ‘내가 한 일’이 적힌 확인서를 받아 자소서·상담에 씁니다.</p></div>
       <div id="doneEmpty" class="card empty">
         <p style="font-weight:700">아직 남긴 기록이 없어요</p>
-        <p class="small muted">수료할 때 2분 기록을 남기면 업무 내용이 적힌 참여확인서가 여기에 생깁니다.</p>
+        <p class="small muted">2분 기록을 남기면 여기에 생겨요.</p>
         <a class="btn" href="#write">2분 기록 쓰기</a>
       </div>
       <div id="doneFull" class="view" style="animation:none" hidden>
         <div class="card new">
           <span class="newtag">기록 완료 · 가상</span>
-          <h2 style="font-size:19px">고마워요. 검수 후 다음 청년의 공고 옆에 이렇게 붙어요</h2>
-          <p id="doneSummary" class="small"></p>
-          <a class="btn" id="seeMine" href="#list">공고 옆에 붙은 내 기록 보기</a>
+          <h2 style="font-size:19px">확인서가 생겼어요</h2>
+          <p id="doneSummary" class="small muted"></p>
+          <a class="btn pulse" id="seeMine" href="#list">공고 옆에 붙은 내 기록 보기</a>
         </div>
         <div class="cert" aria-label="참여확인서 시안" style="position:relative;overflow:hidden;isolation:isolate">
           <span aria-hidden="true" style="position:absolute;inset:0;display:grid;place-items:center;font-size:44px;font-weight:900;color:var(--line);transform:rotate(-24deg);pointer-events:none;opacity:.55;z-index:-1">시안 · 가상</span>
@@ -339,7 +360,7 @@ blockquote{margin:0;border-left:3px solid var(--line);padding:2px 0 2px 10px;fon
             <dt>확인 주체</dt><dd>본인 기록 + 운영기관 확인 (제안)</dd>
             <dt>발급기관</dt><dd>(미정)</dd>
           </dl>
-          <p class="small" style="color:var(--accent);font-weight:700">업무와 역량이 적힌 확인서로 자소서·포트폴리오를 씁니다.</p>
+          
         </div>
         <div class="card">
           <p style="font-weight:700">상담에서 이렇게 쓸 수 있어요 (제안)</p>
@@ -352,9 +373,10 @@ blockquote{margin:0;border-left:3px solid var(--line);padding:2px 0 2px 10px;fon
       </div>
     </main>
 
-    <p class="foot" style="padding-top:20px">청년 일경험 정책 제안을 보여 주는 가상 앱입니다. 실제 청년일경험포털이 아니며 입력한 내용은 이 화면에만 잠시 보이고 저장되지 않습니다.</p>
+    <p class="foot" style="padding-top:20px">청년 일경험 정책 제안 가상 앱 · 실제 포털 아님 · 저장 안 됨</p>
   </div>
 
+  <div id="toast" class="toast" role="status" hidden></div>
   <nav class="tabbar" aria-label="탭">
     <a class="tab" href="#home" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>홈</a>
     <a class="tab" href="#list" data-tab="list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>공고</a>
@@ -363,14 +385,14 @@ blockquote{margin:0;border-left:3px solid var(--line);padding:2px 0 2px 10px;fon
   </nav>
 </div>
 </div>
-<p class="note-desk">휴대폰으로 QR을 찍으면 화면 전체가 앱처럼 열립니다. 넓은 화면에서는 휴대폰 틀 안에 보여 줍니다.</p>
+<p class="note-desk">휴대폰으로 QR을 찍으면 앱처럼 열립니다.</p>
 
 <script>
 // 모든 기업·과정·인물·숫자는 가상 예시
 const ABIL=["데이터 분석","문서·보고","소통·협업","툴 활용","문제 해결","현장 이해"];
 const AFTER=["취업","인턴","추가 교육","구직 중","기타"];
 const progs=[
- {id:"p1",due:"11/14",type:"프로젝트형",co:"○○데이터랩",area:"대전",title:"AI 데이터 분석 프로젝트",period:"4주 (기수제)",n:32,done:4.2,share:[30,55,15],mentor:"주 평균 3시간",output:"분석 보고서 · 팀 발표",drop:"3명 · 주요 사유: 일정 (3명 미만 사유는 숨김)",
+ {id:"p1",pp:{edu:"있음",exp:"2026-11-23 ~ 2026-12-18",rec:"26.10.22.~26.11.14.",cnt:"8명",job:"IT",intro:"공공 데이터를 다루는 분석 기업",what:"수요 예측 데이터 분석과 결과 보고",ev:["데이터 이해도","분석 적절성","보고서 완성도"],coach:4,coachReal:3.5,kw:["#데이터","#Python","#보고서"]},due:"11/14",type:"프로젝트형",co:"○○데이터랩",area:"대전",title:"AI 데이터 분석 프로젝트",period:"4주 (기수제)",n:32,done:4.2,share:[30,55,15],mentor:"주 평균 3시간",output:"분석 보고서 · 팀 발표",drop:"3명 · 주요 사유: 일정 (3명 미만 사유는 숨김)",
   resp:21,after:[8,6,3,2,2],abil:[86,72,48,80,64,30],
   tasks:["데이터 수집·정리","데이터 전처리","모델 실습","기업 현장 실무 투입","결과 보고·발표"],
   lines:["데이터 전처리 담당, 모델 실습","교육 30 · 실무 55 · 잡무 15","멘토링 주 3시간 · 보고서 제출"],
@@ -378,7 +400,7 @@ const progs=[
    {who:"데이터 계열 전공",c:"재학생",did:"공공 데이터 전처리, 수요 예측 모델 실습",worry:"모델을 처음부터 만들어야 할까?",real:"기본 코드가 주어지고 변수를 바꿔 보는 실습 중심이었어요.",fit:"분석 과정을 처음부터 끝까지 한 번 해 보고 싶은 사람",miss:"현업 데이터가 아니라 공개 데이터라 현장감은 적었어요.",used:[0,1,3]},
    {who:"상경 계열 · 비전공",c:"재학생",did:"설문 데이터 정리, 시각화 보고서 작성",worry:"비전공자도 따라갈 수 있을까?",real:"첫 2주 기초 과정이 있어 가능. 파이썬 기초는 미리 해 두면 좋아요.",fit:"보고서에 숫자 근거를 넣는 연습을 하고 싶은 사람",miss:"팀마다 멘토 시간이 조금씩 달랐어요.",used:[0,1,4]},
    {who:"대학 밖 청년",c:"졸업 후",did:"모델 결과 비교, 팀 발표 담당",worry:"공백기라 따라갈 수 있을까?",real:"기수 사람들과 같이 해서 오히려 리듬이 생겼어요.",fit:"포트폴리오에 넣을 결과물이 필요한 사람",miss:"기업 현장 투입은 없었어요.",used:[0,2,3]}]},
- {id:"p2",due:"11/21",type:"인턴형",co:"△△커머스",area:"서울",title:"마케팅 실무 인턴",period:"8주",n:18,done:3.1,share:[10,60,30],mentor:"주 평균 1시간",output:"콘텐츠 기획안",drop:"3명 미만 (숫자 숨김)",
+ {id:"p2",pp:{edu:"없음",exp:"2026-12-01 ~ 2027-01-23",rec:"26.10.25.~26.11.21.",cnt:"4명",job:"마케팅",intro:"온라인 커머스 기업",what:"SNS 콘텐츠 기획·운영 보조",ev:["기획력","콘텐츠 완성도","성과 분석"],coach:8,coachReal:4.1,kw:["#마케팅","#SNS","#콘텐츠"]},due:"11/21",type:"인턴형",co:"△△커머스",area:"서울",title:"마케팅 실무 인턴",period:"8주",n:18,done:3.1,share:[10,60,30],mentor:"주 평균 1시간",output:"콘텐츠 기획안",drop:"3명 미만 (숫자 숨김)",
   resp:12,after:[5,3,1,2,1],abil:[40,58,82,70,45,76],
   tasks:["SNS 콘텐츠 기획","콘텐츠 제작","운영 데이터 정리","고객 문의 응대","기획안 발표"],
   lines:["SNS 콘텐츠 기획과 운영 보조","교육 10 · 실무 60 · 잡무 30","멘토링 주 1시간 · 기획안 제출"],
@@ -386,7 +408,7 @@ const progs=[
    {who:"미디어 계열 전공",c:"재학생",did:"인스타그램 카드뉴스 기획 12건, 반응 수치 정리",worry:"커피·복사만 하는 거 아닐까?",real:"잡무는 30% 정도. 기획안은 실제로 올라갔어요.",fit:"실제 계정을 운영해 보고 싶은 사람",miss:"멘토가 바빠서 피드백이 주 1회뿐이었어요.",used:[2,3,5]},
    {who:"상경 계열",c:"졸업 후",did:"상세페이지 문구 수정, 고객 문의 분류",worry:"마케팅 전공이 아니어도 될까?",real:"툴(캔바·스프레드시트)만 익숙하면 충분했어요.",fit:"현장 속도감을 직접 겪어 보고 싶은 사람",miss:"문의 응대 비중이 생각보다 컸어요.",used:[2,5]},
    {who:"인문 계열 전공",c:"재학생",did:"블로그 원고 작성, 이벤트 운영 보조",worry:"글쓰기 말고 할 게 있을까?",real:"원고 쓰기가 실제 업무의 절반이었어요.",fit:"글로 상품을 설명하는 일에 관심 있는 사람",miss:"성과 지표 보는 법은 따로 공부해야 했어요.",used:[1,2,3]}]},
- {id:"p3",due:"11/28",type:"기업탐방형",co:"□□제조",area:"대구",title:"지역 제조기업 직무 탐방",period:"2주",n:41,done:4.6,share:[60,30,10],mentor:"현직자 Q&A 2회",output:"직무 탐색 보고서",drop:"3명 미만 (숫자 숨김)",
+ {id:"p3",pp:{edu:"있음",exp:"2026-12-07 ~ 2026-12-18",rec:"26.10.28.~26.11.28.",cnt:"15명",job:"제조",intro:"지역 제조기업",what:"생산·품질·개발 직무 탐방",ev:["직무 이해도","탐색 보고서","참여도"],coach:2,coachReal:2,kw:["#제조","#직무탐색","#현장"]},due:"11/28",type:"기업탐방형",co:"□□제조",area:"대구",title:"지역 제조기업 직무 탐방",period:"2주",n:41,done:4.6,share:[60,30,10],mentor:"현직자 Q&A 2회",output:"직무 탐색 보고서",drop:"3명 미만 (숫자 숨김)",
   resp:25,after:[4,5,9,5,2],abil:[18,66,74,22,35,92],
   tasks:["공장·사무실 견학","직무 5개 체험","현직자 Q&A","팀 과제","탐색 보고서 제출"],
   lines:["3곳 방문, 직무 5개 체험","교육 60 · 실무 30 · 잡무 10","현직자 Q&A 2회 · 탐색 보고서"],
@@ -394,7 +416,7 @@ const progs=[
    {who:"공학 계열 전공",c:"재학생",did:"생산관리·품질 직무 체험, 현직자 인터뷰",worry:"견학만 하고 끝나는 건 아닐까?",real:"직무별로 반나절씩 실제 업무 흐름을 따라가 봤어요.",fit:"어느 직무로 갈지 아직 못 정한 사람",miss:"2주라 깊이는 얕아요. 탐색용으로 생각하세요.",used:[2,5]},
    {who:"디자인 계열 전공",c:"재학생",did:"제품 개발팀 회의 참관, 탐색 보고서",worry:"디자인 전공이 제조업에 맞을까?",real:"개발팀에 디자인 직무가 있다는 걸 처음 알았어요.",fit:"지역 기업을 진로 후보로 넣어 보고 싶은 사람",miss:"이동 시간이 길었어요.",used:[1,5]},
    {who:"대학 밖 청년",c:"졸업 후",did:"품질 검사 체험, 팀 과제 발표",worry:"나이가 많은 편인데 괜찮을까?",real:"참여자 연령대가 넓어서 신경 쓰이지 않았어요.",fit:"현장을 직접 보고 지원서를 쓰고 싶은 사람",miss:"수당보다는 경험 위주라는 걸 미리 알면 좋아요.",used:[2,4,5]}]},
- {id:"p4",due:"12/05",type:"프로젝트형",co:"◇◇문화재단",area:"광주",title:"지역 문화행사 기획 프로젝트",period:"6주",n:24,done:3.8,share:[20,65,15],mentor:"주 평균 2시간",output:"행사 기획서 · 운영 보고",drop:"3명 미만 (숫자 숨김)",
+ {id:"p4",pp:{edu:"있음",exp:"2026-12-14 ~ 2027-01-23",rec:"26.11.01.~26.12.05.",cnt:"6명",job:"기획",intro:"지역 문화재단",what:"주말 문화행사 기획·운영",ev:["기획안 논리성","운영 완성도","협업"],coach:6,coachReal:5.2,kw:["#기획","#행사","#공공"]},due:"12/05",type:"프로젝트형",co:"◇◇문화재단",area:"광주",title:"지역 문화행사 기획 프로젝트",period:"6주",n:24,done:3.8,share:[20,65,15],mentor:"주 평균 2시간",output:"행사 기획서 · 운영 보고",drop:"3명 미만 (숫자 숨김)",
   resp:16,after:[6,4,2,3,1],abil:[30,84,88,52,70,68],
   tasks:["행사 기획안 작성","예산표 정리","홍보물 제작","현장 운영","결과 보고서"],
   lines:["행사 기획안·예산표 작성, 현장 운영","교육 20 · 실무 65 · 잡무 15","멘토링 주 2시간 · 기획서 제출"],
@@ -402,7 +424,7 @@ const progs=[
    {who:"문화 계열 전공",c:"재학생",did:"주말 플리마켓 기획, 예산표 작성",worry:"실제 행사를 맡겨 줄까?",real:"작은 부스 하나를 처음부터 끝까지 맡았어요.",fit:"기획서가 현장에서 어떻게 바뀌는지 보고 싶은 사람",miss:"행사 주간엔 주말 근무가 있었어요.",used:[1,2,4]},
    {who:"사회 계열 전공",c:"재학생",did:"참가자 모집 안내문, 결과 보고서 작성",worry:"공공기관 문서는 어렵지 않을까?",real:"양식이 있어서 작성법을 배우기 좋았어요.",fit:"공공 분야 기획·행정을 경험하고 싶은 사람",miss:"홍보물 디자인은 외주라 직접 하진 못했어요.",used:[1,2]},
    {who:"대학 밖 청년",c:"졸업 후",did:"현장 운영 총괄 보조, 민원 응대",worry:"사람 상대가 서툰데 괜찮을까?",real:"팀으로 움직여서 역할이 나뉘어 있었어요.",fit:"현장 운영 경험을 이력서에 쓰고 싶은 사람",miss:"현장 당일은 체력 소모가 커요.",used:[2,4,5]}]},
- {id:"p5",due:"12/12",type:"인턴형",co:"☆☆소셜벤처",area:"부산",title:"사회적기업 운영 지원 인턴",period:"10주",n:15,done:3.4,share:[15,55,30],mentor:"주 평균 2시간",output:"운영 매뉴얼",drop:"3명 미만 (숫자 숨김)",
+ {id:"p5",pp:{edu:"없음",exp:"2027-01-04 ~ 2027-03-12",rec:"26.11.03.~26.12.12.",cnt:"3명",job:"사회복지",intro:"사회적기업",what:"돌봄 프로그램 운영 지원·매뉴얼 작성",ev:["운영 이해도","매뉴얼 완성도","협업"],coach:10,coachReal:6,kw:["#사회적가치","#운영","#문서"]},due:"12/12",type:"인턴형",co:"☆☆소셜벤처",area:"부산",title:"사회적기업 운영 지원 인턴",period:"10주",n:15,done:3.4,share:[15,55,30],mentor:"주 평균 2시간",output:"운영 매뉴얼",drop:"3명 미만 (숫자 숨김)",
   resp:10,after:[4,2,1,2,1],abil:[44,76,70,60,66,72],
   tasks:["회계·서류 정리","프로그램 운영 보조","운영 매뉴얼 작성","후원자 소식지 제작","성과 지표 정리"],
   lines:["프로그램 운영 보조, 운영 매뉴얼 작성","교육 15 · 실무 55 · 잡무 30","멘토링 주 2시간 · 매뉴얼 제출"],
@@ -434,53 +456,65 @@ function radar(vals,big){
 const top3=p=>ABIL.map((a,i)=>[a,p.abil[i]]).sort((x,y)=>y[1]-x[1]).slice(0,3);
 
 function chips(){
-  const types=["all","인턴형","프로젝트형","기업탐방형"];
+  const types=["all","인턴형","프로젝트형","ESG지원형","기업탐방형"];
   $("typeChips").innerHTML=types.map(t=>`<button class="chip" type="button" data-t="${t}" aria-pressed="${t===typeFilter}">${t==="all"?"전체":t}</button>`).join("");
   $("abilChips").innerHTML=[-1,...ABIL.keys()].map(i=>`<button class="chip" type="button" data-a="${i}" aria-pressed="${i===abilFilter}">${i<0?"상관없음":ABIL[i]}</button>`).join("");
   document.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{typeFilter=b.dataset.t;chips();renderList();});
-  document.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>{abilFilter=+b.dataset.a;chips();renderList();});
+  document.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>{abilFilter=+b.dataset.a;chips();renderList();if(abilFilter>=0)mark(1,"→ 걸러진 공고를 보세요");});
 }
+let afterMode=true;
 function renderList(){
   const box=$("listCards");
-  const list=progs.filter(p=>(typeFilter==="all"||p.type===typeFilter)&&(abilFilter<0||p.abil[abilFilter]>=60));
-  $("listCount").textContent=`가상 공고 ${list.length}건`;
-  box.innerHTML=list.length?list.map(p=>`<a href="#${p.id}" class="card jobcard">
-    <p class="small muted">${p.type} · ${p.area} · ${p.period} · 마감 ${p.due}(가상)</p>
-      <h3 style="font-size:17px">${p.title}</h3>
-      <p class="small" style="font-weight:700">${label(p)}</p>
-    <p class="small muted">수료자가 자주 해 본 일</p>
-    <div class="row" style="gap:6px">${top3(p).map(([a])=>`<span class="tag">${a}</span>`).join("")}</div>
-    <div style="background:var(--accent-soft);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px">
-      <p class="small" style="font-weight:700;color:var(--accent)">실제 업무 3줄 · 수료자 기록 ${p.n+(mine[p.id]?1:0)}건(가상)</p>
-      ${p.lines.map(l=>`<p class="small">· ${l}</p>`).join("")}</div></a>`).join("")
-    :`<div class="card"><p class="small muted">조건에 맞는 가상 공고가 없어요. ‘상관없음’으로 바꿔 보세요.</p></div>`;
+  const list=progs.filter(p=>(typeFilter==="all"||p.type===typeFilter)&&(!afterMode||abilFilter<0||p.abil[abilFilter]>=60));
+  $("listCount").textContent=list.length;
+  $("abilWrap").hidden=!afterMode;
+  box.innerHTML=list.length?list.map(p=>`<a href="#${p.id}" class="pcard">
+    <div class="row" style="gap:6px"><span class="ptag t">${p.type}</span><span class="ptag">마감 ${p.due}</span></div>
+    <h3 style="font-size:16px">[${p.co}(가상)] ${p.title}</h3>
+    <dl class="kv" style="grid-template-columns:64px 1fr;font-size:13px"><dt>모집기간</dt><dd>${p.pp.rec}</dd><dt>모집인원</dt><dd>${p.pp.cnt}</dd><dt>모집직무</dt><dd>${p.pp.job}</dd><dt>모집지역</dt><dd>${p.area}</dd></dl>
+    ${afterMode?`<div class="plus"><span class="h">＋ 먼저 다녀온 ${p.n+(mine[p.id]?1:0)}명(가상)</span>
+      <div class="row" style="gap:6px">${top3(p).map(([a])=>`<span class="tag" style="background:var(--surface)">${a}</span>`).join("")}</div>
+      <p class="small">실무 ${p.share[1]} · 교육 ${p.share[0]} · 잡무 ${p.share[2]} (%)</p></div>`:""}
+    <span class="more-btn">자세히보기</span></a>`).join("")
+    :`<div class="card"><p class="small muted">조건에 맞는 가상 공고가 없어요.</p></div>`;
 }
 function reviewHTML(r,isMine){
   return `<div class="rv${isMine?" mine":""}">
     ${isMine?'<span class="newtag">방금 남긴 기록 · 이 기기에만 보임</span>':""}
     <p class="small"><b>${esc(r.who)}</b> <span class="muted">· ${esc(r.c)} · 수료자만 작성</span></p>
-    <p class="lab">맡은 일</p><p class="small">${esc(r.did)}</p>
+    <p class="small"><b>한 일</b> ${esc(r.did)}</p>
+    <p class="q2">“${esc(r.real)}”</p>
+    <details class="more"><summary>＋ 걱정·맞는 사람·아쉬운 점</summary><div class="view" style="gap:6px;animation:none;margin-top:6px">
     <p class="q1">처음 걱정: “${esc(r.worry)}”</p>
-    <p class="q2">실제: “${esc(r.real)}”</p>
     <p class="small"><span class="lab">이런 사람에게 맞아요 </span>${esc(r.fit)}</p>
-    <p class="small"><span class="lab">미리 알았으면 좋았을 점 </span>${esc(r.miss)}</p>
+    <p class="small"><span class="lab">미리 알았으면 좋았을 점 </span>${esc(r.miss)}</p></div></details>
     <div class="row" style="gap:6px">${r.used.map(i=>`<span class="tag gray">${ABIL[i]}</span>`).join("")}</div></div>`;
 }
 function renderDetail(){
   const p=progs.find(x=>x.id===cur);
-  $("dHead").innerHTML=`<p class="small muted">${p.type} · ${label(p)} · ${p.area}</p>
-    <h2 style="font-size:20px">${p.title}</h2>
-    <dl class="kv"><dt>기간</dt><dd>${p.period}</dd><dt>참여수당</dt><dd>공고·운영계획서별로 다름</dd>
-    <dt>모집</dt><dd>희망 기업 순위 입력</dd><dt>공고 업무</dt><dd>${p.tasks.map((t,i)=>(i+1)+". "+t).join("<br>")}</dd></dl>
-    <p class="warnline">※ 프로그램별 선발기준, 기관별 운영계획서 반드시 확인</p><p class="cite">${"운영기관 공고 예시: 화성상공회의소 「미래내일 일경험 2기 모집 공고문」(2025) · 기관마다 다를 수 있음 문구"}</p>`;
+  const q=p.pp;
+  $("dHead").innerHTML=`<p style="font-weight:900;font-size:18px">프로그램 상세 정보</p>
+    <dl class="ptbl"><dt>사업명</dt><dd>2026년 청년 일경험 지원사업</dd><dt>주관기관</dt><dd>고용노동부</dd>
+    <dt>프로그램명</dt><dd><b>[${p.co}(가상)] ${p.title}</b></dd><dt>유형 · 지역</dt><dd>${p.type} · ${p.area}</dd>
+    <dt>사전직무교육</dt><dd>${q.edu}</dd><dt>일경험 기간</dt><dd>${q.exp}</dd>
+    <dt>주요내용</dt><dd>${q.intro}(가상) · ${q.what}</dd>
+    <dt>평가계획</dt><dd>${q.ev.join(" · ")}</dd>
+    <dt>코칭계획</dt><dd>${q.coach}회</dd>
+    <dt>관련 키워드</dt><dd>${q.kw.join(" ")}</dd></dl>
+    <p class="srcbar">청년일경험포털 상세 화면의 항목 구성 재현(2026-10 화면 기준) · 내용은 가상</p>`;
   const tot=p.after.reduce((a,b)=>a+b,0);
   const reviews=(mine[p.id]?reviewHTML(mine[p.id],true):"")+p.rv.map(r=>reviewHTML(r,false)).join("");
   $("afterPanel").innerHTML=`
-    <div class="card new"><span class="newtag">새로 생김 · 먼저 다녀온 사람의 기록</span>
-      <p style="font-weight:700">이 과정에서 해 본 일</p>
-      <p class="small muted">수료자 ${p.n}명(가상) 중 “이 일을 해 봤다”고 답한 사람 · 복수 선택</p>
+    <div class="card new"><span class="newtag">새로 생김 · 계획 vs 실제</span>
+      <div class="pva"><span class="hd">항목</span><span class="hd">공고(계획)</span><span class="hd">수료자(실제)</span>
+        <span>코칭</span><span>${q.coach}회</span><span class="r">평균 ${q.coachReal}회</span>
+        <span>업무</span><span>5개</span><span class="r">평균 ${p.done}개 수행</span>
+        <span>시간</span><span>-</span><span class="r">실무 ${p.share[1]}%</span></div>
+      <p class="cite" style="margin:0">수료자 ${p.n}명(가상) 응답</p></div>
+    <div class="card"><p style="font-weight:700">이 과정에서 해 본 일</p>
+      <p class="small muted">수료자 ${p.n}명(가상) 중 해 본 사람</p>
       ${ABIL.map((a,i)=>`<div class="barrow" style="grid-template-columns:76px 1fr 48px"><span>${a}</span><span class="track"><i style="width:${p.abil[i]}%"></i></span><span>${Math.round(p.n*p.abil[i]/100)}명</span></div>`).join("")}
-      <p class="small" style="background:var(--bg);border-radius:8px;padding:8px 10px">높고 낮음은 좋고 나쁨이 아닙니다. 이 과정이 어떤 경험을 주는지의 차이입니다.</p>
+      <p class="cite" style="margin:0">많고 적음 ≠ 좋고 나쁨</p>
     </div>
     <div class="card"><p style="font-weight:700">먼저 수료한 ${p.n}명의 사실 기록 <span class="small muted">(가상)</span></p>
       <div class="row" style="justify-content:space-between;align-items:baseline;flex-wrap:nowrap">
@@ -492,22 +526,24 @@ function renderDetail(){
     </div>
     <div class="card"><p style="font-weight:700">3개월 뒤 어디로 갔나 <span class="small muted">(가상 · ${p.n}명 중 ${p.resp}명 응답)</span></p>
       ${(()=>{const big=[],small=AFTER.map((a,i)=>[a,p.after[i]]).filter(([a,v])=>v>=3||(big.push([a,v]),false));let rows=small;const rest=big.reduce((x,[,v])=>x+v,0);if(rest)rows=rows.concat([["그 외 합산",rest]]);return rows.map(([a,v])=>`<div class="barrow" style="grid-template-columns:72px 1fr 56px"><span>${a}</span><span class="track"><i style="width:${v<3?0:Math.round(v/tot*100)}%"></i></span><span>${v<3?"3명 미만":v+"명"}</span></div>`).join("");})()}
-      <p class="small muted">응답률 ${Math.round(p.resp/p.n*100)}%. 3명 미만 항목은 ‘그 외’로 합쳐 사람을 특정할 수 없게 합니다.</p></div>
+      <p class="cite" style="margin:0">응답률 ${Math.round(p.resp/p.n*100)}% · 3명 미만은 ‘그 외’로 합침</p></div>
     <div class="card"><p style="font-weight:700">먼저 해 본 사람들의 기록 <span class="small muted">${p.rv.length+(mine[p.id]?1:0)}건 표시</span></p>
-      <p class="small muted">별점·추천 수 없이 사실만 적습니다. 이름·학년·기수는 가리고 전공 계열만 보입니다. 운영기관 검수 후 게시되고, 기업은 게시 전 사실 정정을 요청할 수 있습니다.</p>
+      <div class="row" style="gap:6px"><span class="tag gray">별점 없음</span><span class="tag gray">이름 비공개</span><span class="tag gray">검수 후 게시</span><span class="tag gray">기업 정정 요청 가능</span></div>
       ${reviews}</div>
     <a class="btn" href="#write" id="toWrite">이 과정을 수료했다면, 기록 쓰기</a>
-    <p class="foot">1단계는 과정 단위로 묶어 보여 주고, 기업명 공개는 기업 동의를 받은 경우에만 합니다.</p>`;
+    <p class="foot">기업명은 동의한 곳만 공개</p>`;
   $("toWrite").onclick=()=>{$("prog").value=p.id;fillForm();};
 }
 function setMode(after){
-  $("segAfter").setAttribute("aria-pressed",String(after));
-  $("segBefore").setAttribute("aria-pressed",String(!after));
+  afterMode=after;
+  document.querySelectorAll("#segBox button,#segBoxL button").forEach((b,i)=>b.setAttribute("aria-pressed",String((b.dataset.mode==="1"||b.id==="segAfter")===after)));
   $("afterPanel").hidden=!after;$("beforeNote").hidden=after;
+  renderList();
 }
-$("segBefore").onclick=()=>setMode(false);
-$("segAfter").onclick=()=>setMode(true);
-$("toAfter").onclick=()=>setMode(true);
+$("segBefore").onclick=()=>{setMode(false);mark(0);};
+$("segAfter").onclick=()=>{setMode(true);mark(0);};
+$("toAfter").onclick=()=>{setMode(true);mark(0);};
+document.querySelectorAll("#segBoxL button").forEach(b=>b.onclick=()=>{setMode(b.dataset.mode==="1");mark(0);});
 $("checkBtn").addEventListener("click",()=>{
   const ok=["c1","c2","c3"].every(id=>$(id).checked);
   const out=$("checkOut");out.hidden=false;
@@ -547,10 +583,26 @@ $("form").addEventListener("submit",e=>{
   $("certAbil").textContent=used.map(i=>ABIL[i]).join(", ")||"없음";
   $("certShare").textContent=`교육 ${v[0]} · 실무 ${v[1]} · 잡무 ${v[2]} (%) · 멘토링 ${$("mentor").value}`;
   $("certOut").textContent=$("output").value;
-  $("doneSummary").textContent=`${p.co}(가상) 공고 옆에는 운영기관 검수 후 붙습니다(체험판에서는 지금 이 기기에만 바로 보여요). 업무 ${tasks.length}개 수행 · 역량 ${used.length}개 · 잡무 ${v[2]}%. ‘해 본 일’ 집계에는 같은 과정 기록과 묶여 반영됩니다.`;
+  $("doneSummary").textContent=`실제로는 검수 후 ${p.co}(가상) 공고 옆에 붙어요. 체험판은 이 기기에만 보여요.`;
   $("seeMine").href="#"+p.id;
-  submitted=true;location.hash="done";
+  submitted=true;location.hash="done";mark(2,"→ 아래 확인서를 보세요");
 });
+
+// 기능 체험 체크
+const mis=[false,false,false,false];
+function mark(i,msg){
+  if(mis[i])return;mis[i]=true;
+  const n=mis.filter(Boolean).length;
+  $("misCount").textContent=`${n} / 4`;$("misBar").style.width=n*25+"%";
+  document.querySelectorAll("[data-m]").forEach(a=>{const k=+a.dataset.m;a.classList.toggle("ok",mis[k]);a.querySelector(".st").textContent=mis[k]?"✓ 확인":"해 보기";a.querySelector(".n").textContent=mis[k]?"✓":k+1;});
+  const t=$("toast");t.textContent=`✓ 기능 ${i+1} 확인 · ${n}/4 ${msg||""}`;t.hidden=false;clearTimeout(t._h);t._h=setTimeout(()=>t.hidden=true,2200);
+  updHints();
+}
+function updHints(){
+  $("hintSeg").hidden=mis[0];$("segBox").classList.toggle("pulse",!mis[0]);$("segBoxL").classList.toggle("pulse",!mis[0]);
+  $("hintAbil").hidden=mis[1];$("abilChips").classList.toggle("pulse",!mis[1]);
+}
+$("abilChips").style.borderRadius="14px";
 
 // 화면 이동
 const titles={home:null,changes:"무엇이 바뀌나",check:"자격 확인",list:"공고 옆 기록",detail:"공고 상세",write:"2분 기록",done:"내 참여확인서"};
@@ -563,7 +615,7 @@ function route(){
   let h=(location.hash||"#home").slice(1);
   if(h==="detail")h="p1";
   let v=h;
-  if(/^p\d$/.test(h)&&progs.some(p=>p.id===h)){cur=h;v="detail";renderDetail();setMode(true);}
+  if(/^p\d$/.test(h)&&progs.some(p=>p.id===h)){cur=h;v="detail";renderDetail();setMode(afterMode);if(mine[h])setTimeout(()=>{mark(3,"· 다 해 봤어요!");const m=document.querySelector(".mine");if(m)m.scrollIntoView({block:"center",behavior:"smooth"});},250);}
   else if(!(h in titles))v="home";
   Object.keys(titles).forEach(k=>$("v-"+k).hidden=k!==v);
   $("ttl").innerHTML=titles[v]?titles[v]:'<span class="logo"><b>내일</b>경험</span>';
@@ -574,7 +626,7 @@ function route(){
   $("scroll").scrollTop=0;
 }
 window.addEventListener("hashchange",route);
-chips();fillForm();route();
+chips();fillForm();updHints();route();
 </script>
 
 </body>
