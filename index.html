@@ -266,6 +266,11 @@ footer{border-top:1px solid var(--line);padding:24px 0 120px;font-size:12px;colo
 <section id="v-changes" class="page" hidden>
   <h1 style="font-size:30px">무엇이 바뀌나</h1>
   <p class="muted">신청·수료 절차는 그대로 두고, 공고 옆에 먼저 다녀온 사람의 기록만 더합니다.</p>
+  <div class="three">
+   <div class="box"><p class="lbl">1년 차 · 대전 시범</p><p style="font-weight:800;color:var(--ink)">모으기만, 공개는 안 함</p><p class="small muted">만족도 조사에 사실 문항 5개를 선택 응답으로 더하고(수료증과 무관), 중도 이탈 1문항을 추가합니다. 결과는 운영기관·기업에 내부 리포트로 돌려줍니다.</p></div>
+   <div class="box"><p class="lbl">2~3년 차</p><p style="font-weight:800;color:var(--ink)">묶어서 공개</p><p class="small muted">유형·직무·지역 단위로 묶어 공개합니다(예: “IT 인턴형 코칭 평균 3.5회”). 동의한 기업만 과정 단위로 공개하고, 서술형 원문은 공개하지 않습니다.</p></div>
+   <div class="box"><p class="lbl">하지 않는 것</p><p style="font-weight:800;color:var(--ink)">별점·순위·강제</p><p class="small muted">별점·순위·기업 비교표는 만들지 않습니다. 기록을 수료증 조건으로 걸지 않고, 자기 기록을 기업 확인 없이 증명서에 싣지 않습니다.</p></div>
+  </div>
   <div class="chg" id="chg"></div>
   <p class="src">따옴표 = 원문 인용 · 2026-10~11 기준 · 운영기관·연도에 따라 다를 수 있음</p>
 </section>
@@ -392,6 +397,7 @@ function detail(){
   const rv=r=>`<div class="rv${r.me?' mine':''}">${r.me?'<span class="newtag" style="align-self:flex-start">방금 남긴 기록 · 이 기기에만 보임</span>':''}<p class="small"><b>${esc(r.who)}</b> <span class="muted">· ${esc(r.c)} · 수료자만 작성</span></p><p class="small"><b>한 일</b> ${esc(r.did)}</p><p class="q2 small">“${esc(r.real)}”</p><details><summary>＋ 처음 걱정 · 아쉬운 점</summary><p class="small" style="margin-top:6px">처음 걱정: “${esc(r.worry)}”<br>미리 알았으면: ${esc(r.miss)}</p></details><div style="display:flex;gap:4px;flex-wrap:wrap">${r.used.map(i=>`<span class="tg g">${ABIL[i]}</span>`).join("")}</div></div>`;
   $("dAfter").innerHTML=`<div class="newbox page" style="gap:18px">
    <h2 style="font-size:22px"><span class="newtag">NEW</span> 먼저 다녀온 사람의 실제 기록 <span class="small muted" style="font-weight:500">수료자 ${p.n}명(가상) · 별점·순위 없음 · 3명 미만은 숨김</span></h2>
+   <p class="small" style="background:var(--warnsoft);color:var(--warn);border-radius:8px;padding:8px 12px;font-weight:700">2~3년 차 목표 화면 · 기업이 공개에 동의한 과정만 이렇게 보입니다. 1년 차에는 공개하지 않고 운영기관·기업에 내부 리포트로만 돌려줍니다.</p>
    <div class="three">
     <div class="box"><p class="lbl">계획 vs 실제</p><div class="pva"><span class="hd">항목</span><span class="hd">공고(계획)</span><span class="hd">수료자(실제)</span><span>코칭</span><span>${q.coach}회</span><span class="r">평균 ${q.coachReal}회</span><span>업무</span><span>5개</span><span class="r">평균 ${p.done}개 수행</span><span>결과물</span><span>계획서 기준</span><span class="r">${p.output}</span></div></div>
     <div class="box"><p class="lbl">이 과정에서 해 본 일</p>${ABIL.map((a,i)=>`<div class="br"><span>${a}</span><span class="tr"><i style="width:${p.abil[i]}%"></i></span><span>${Math.round(p.n*p.abil[i]/100)}명</span></div>`).join("")}<p class="cite">많고 적음 ≠ 좋고 나쁨</p></div>
