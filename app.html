@@ -264,8 +264,8 @@ details.more summary::-webkit-details-marker{display:none}
       <div class="sumline"><span class="k">한 줄 요약</span><p>공고마다, 먼저 다녀온 사람들이 실제로 무슨 일을 했는지 함께 보여 줍니다.</p></div>
       
       <div class="seg" role="group" aria-label="비교" id="segBoxL">
-        <button type="button" data-mode="0" aria-pressed="false">지금 화면</button>
-        <button type="button" data-mode="1" aria-pressed="true">바뀐 뒤</button>
+        <button type="button" data-mode="0" aria-pressed="true">지금 화면</button>
+        <button type="button" data-mode="1" aria-pressed="false">바뀐 뒤</button>
       </div>
       <div class="portal view" style="gap:10px;animation:none"><div class="row" style="align-items:baseline;gap:8px"><p style="font-weight:900;font-size:19px">일경험 프로그램</p><p class="small">현재 모집 중인 프로그램 수 <b style="color:#256EF4;font-size:20px" id="listCount"></b>건 <span class="muted">(가상)</span></p></div>
       <div class="ptabs" aria-hidden="true"><span>등록일순</span><span class="on">마감일순</span></div>
@@ -286,8 +286,8 @@ details.more summary::-webkit-details-marker{display:none}
       <div class="sumline"><span class="k">한 줄 요약</span><p>지원하기 전에, ‘가서 뭘 하지?’의 답을 먼저 다녀온 사람의 기록으로 봅니다.</p></div>
       <p class="hint" id="hintSeg">눌러서 비교해 보세요</p>
       <div class="seg" role="group" aria-label="비교" id="segBox">
-        <button type="button" id="segBefore" aria-pressed="false">지금 화면</button>
-        <button type="button" id="segAfter" aria-pressed="true">바뀐 뒤</button>
+        <button type="button" id="segBefore" aria-pressed="true">지금 화면</button>
+        <button type="button" id="segAfter" aria-pressed="false">바뀐 뒤</button>
       </div>
       <div class="card" id="dHead"></div>
       <div id="beforeNote" class="card" hidden>
@@ -481,7 +481,7 @@ function chips(){
   document.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{typeFilter=b.dataset.t;chips();renderList();});
   document.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>{abilFilter=+b.dataset.a;chips();renderList();if(abilFilter>=0)mark(1,"→ 걸러진 공고를 보세요");});
 }
-let afterMode=true;
+let afterMode=false;
 function renderList(){
   const box=$("listCards");
   const list=progs.filter(p=>(typeFilter==="all"||p.type===typeFilter)&&(!afterMode||abilFilter<0||p.abil[abilFilter]>=60));
@@ -645,7 +645,7 @@ function route(){
   $("scroll").scrollTop=0;
 }
 window.addEventListener("hashchange",route);
-chips();fillForm();updHints();route();
+chips();fillForm();updHints();route();setMode(false);
 </script>
 
 </body>
