@@ -145,8 +145,20 @@ details.more summary::-webkit-details-marker{display:none}
 .ptbl dd{background:var(--surface)}
 .ptag{display:inline-block;font-size:12px;padding:2px 7px;border-radius:4px;border:1px solid var(--line);background:var(--bg)}
 .ptag.t{background:var(--warn-soft);color:var(--warn);border-color:transparent}
-.pcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;text-decoration:none}
-.pcard .more-btn{align-self:flex-end;font-size:13px;border:1px solid var(--accent);color:var(--accent);border-radius:6px;padding:5px 12px;background:var(--accent-soft)}
+#v-list .portal{--pn:#063A74;--pb:#256EF4;--pbd:#0B50D0;--ps:#ECF2FE;--pt:#464C53}
+.ptabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.ptabs span{text-align:center;padding:10px 0;font-size:14px;color:var(--muted);font-weight:500}
+.ptabs span.on{color:var(--pn,#063A74);font-weight:800;box-shadow:inset 0 -3px 0 var(--pn,#063A74)}
+#typeChips{gap:2px;flex-wrap:nowrap}#typeChips .chip{border-radius:6px;border:0;background:transparent;font-weight:700;color:var(--pt,#464C53);padding:6px 7px;font-size:12.5px;white-space:nowrap}
+#typeChips .chip[aria-pressed="true"]{background:#063A74;color:#fff}
+.ptag.k-인턴형{background:#FFF4D6;color:#C2570C;border-color:transparent}
+.ptag.k-프로젝트형{background:#FDECEC;color:#D6293E;border-color:transparent}
+.ptag.k-기업탐방형{background:#E9F7EF;color:#0F7B4A;border-color:transparent}
+.ptag.k-ESG지원형{background:#E8F1FF;color:#256EF4;border-color:transparent}
+.ptag.dd{background:#F1F3F5;color:#5B6474;border-color:transparent}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ptag[class*="k-"]{filter:brightness(.9)}}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:8px;text-decoration:none}
+.pcard .more-btn{align-self:flex-end;font-size:13px;border:1px solid #256EF4;color:#0B50D0;border-radius:6px;padding:5px 12px;background:#ECF2FE;font-weight:600}
 .plus{background:var(--accent-soft);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;border-left:4px solid var(--accent)}
 .plus .h{font-size:12px;font-weight:900;color:var(--accent)}
 .pva{display:grid;grid-template-columns:64px 1fr 1fr;font-size:13px;gap:0}
@@ -238,6 +250,12 @@ details.more summary::-webkit-details-marker{display:none}
         <div class="now" style="background:var(--accent-soft);border:0"><span class="lbl a">바뀐 뒤</span><p style="font-weight:700;font-size:14px">참여확인서에 수행 업무와 쓴 역량을 적고, 2단계로 통합경력증명 연결을 건의합니다.</p></div>
         <a class="btn ghost" href="#done" style="padding:11px">해 보기 →</a>
       </div>
+      <div class="card">
+        <p class="step">6 · 우수사례</p>
+        <div class="now"><span class="lbl n">지금</span><blockquote>메뉴 ‘우수사례 커뮤니티’: 인턴형·프로젝트형·ESG지원형·기업탐방형 우수사례</blockquote><p class="cite">청년일경험포털 메인 메뉴(2026-11 화면 기준)</p></div>
+        <div class="now" style="background:var(--accent-soft);border:0"><span class="lbl a">바뀐 뒤</span><p style="font-weight:700;font-size:14px">골라 뽑은 성공 사례가 아니라, 과정마다 모든 수료자의 사실 기록이 공고 옆에 붙습니다.</p></div>
+        <a class="btn ghost" href="#p1" style="padding:11px">해 보기 →</a>
+      </div>
       <p class="foot">따옴표 = 원문 인용 · 2026-10-28 기준 · 기관마다 다를 수 있음</p>
     </main>
 
@@ -249,15 +267,16 @@ details.more summary::-webkit-details-marker{display:none}
         <button type="button" data-mode="0" aria-pressed="false">지금 화면</button>
         <button type="button" data-mode="1" aria-pressed="true">바뀐 뒤</button>
       </div>
-      <div class="row" style="align-items:baseline;gap:8px"><p style="font-weight:900;font-size:19px">일경험 프로그램</p><p class="small">모집 중 <b style="color:var(--accent);font-size:18px" id="listCount"></b>건 <span class="muted">(가상)</span></p></div>
+      <div class="portal view" style="gap:10px;animation:none"><div class="row" style="align-items:baseline;gap:8px"><p style="font-weight:900;font-size:19px">일경험 프로그램</p><p class="small">현재 모집 중인 프로그램 수 <b style="color:#256EF4;font-size:20px" id="listCount"></b>건 <span class="muted">(가상)</span></p></div>
+      <div class="ptabs" aria-hidden="true"><span>등록일순</span><span class="on">마감일순</span></div>
       <div class="row" role="group" aria-label="유형" id="typeChips"></div>
-      <div class="row" style="flex-wrap:nowrap"><select disabled aria-label="직무"><option>직무 전체</option></select><select disabled aria-label="지역"><option>지역 전체</option></select></div>
+      <div class="row" style="flex-wrap:nowrap"><select disabled aria-label="직무"><option>직무 전체</option></select><select disabled aria-label="지역"><option>지역 전체</option></select></div></div>
       <div id="abilWrap" class="view" style="gap:8px;animation:none">
         <p class="step"><span class="newtag">새로 생김</span> 이런 일을 해 보고 싶어요</p>
         <p class="hint" id="hintAbil">하나 눌러 보세요</p>
         <div class="row" role="group" aria-label="해 본 일" id="abilChips"></div>
       </div>
-      <p class="srcbar" id="srcList">지금 화면 = 청년일경험포털 목록 구조 재현(2026-10 화면 기준) · 기업·내용은 가상</p>
+      <p class="srcbar" id="srcList">위 목록 = 청년일경험포털 메인의 프로그램 목록 구성·색 재현(2026-11 화면 기준) · 로고·기관 표시는 넣지 않음 · 기업·내용은 가상</p>
       <div id="listCards" class="view" style="animation:none"></div>
       <p class="foot">마감일 순 · 별점·순위 없음</p>
     </main>
@@ -469,7 +488,7 @@ function renderList(){
   $("listCount").textContent=list.length;
   $("abilWrap").hidden=!afterMode;
   box.innerHTML=list.length?list.map(p=>`<a href="#${p.id}" class="pcard">
-    <div class="row" style="gap:6px"><span class="ptag t">${p.type}</span><span class="ptag">마감 ${p.due}</span></div>
+    <div class="row" style="gap:6px"><span class="ptag k-${p.type}">${p.type}</span><span class="ptag dd">마감 ${p.due}</span></div>
     <h3 style="font-size:16px">[${p.co}(가상)] ${p.title}</h3>
     <dl class="kv" style="grid-template-columns:64px 1fr;font-size:13px"><dt>모집기간</dt><dd>${p.pp.rec}</dd><dt>모집인원</dt><dd>${p.pp.cnt}</dd><dt>모집직무</dt><dd>${p.pp.job}</dd><dt>모집지역</dt><dd>${p.area}</dd></dl>
     ${afterMode?`<div class="plus"><span class="h">＋ 먼저 다녀온 ${p.n+(mine[p.id]?1:0)}명(가상)</span>
